@@ -1,0 +1,31 @@
+name: SpecuModerate
+version: '1.0'
+main: com.specu.specuModerate.Main
+api-version: '1.21'
+authors: [ Specu ]
+description: Yeah
+commands:
+  specumoderate:
+    aliases: [sm]
+    description: Plugin command (/sm help)
+  ban:
+    description: Ban command (/ban <player> <reason>)
+  ipban:
+    aliases: [banip, ban-ip, ip-ban]
+    description: Ban command (/ban <player> <reason>)
+  tempban:
+    aliases: [tban]
+    description: TempBan command (/tempban <player> <time> <d/h/m/s> <reason>)
+  unban:
+    description: UnBan command (/unban <player>)
+  kick:
+    description: Kick command (/kick <player> <reason>)
+  mute:
+    description: Mute command (/mute <player> <time> <d/h/m/s> <reason>)
+  unmute:
+    description: UnMute command (/unmute <player>)
+  warn:
+    description: Warn command (/warn <player> <reason>)
+  whitelist:
+    aliases: [wl, whitel, wlist]
+    description: Whitelist command (/whitelist <on/off/add/remove/clear> <player>)

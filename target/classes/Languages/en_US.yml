@@ -1,0 +1,170 @@
+# Placeholders: {prefix}, {player}, {admin}, {reason}, {time}
+
+# You can set a prefix here if you want.
+prefix: "&8[&c&lSPECU&8]"
+
+# General messages
+no-permission: "{prefix} &7You do not have permission to use this command!"
+sm-bad-usage: "{prefix} &7Correct usage: /sm help"
+command-cooldown: "{prefix} &7You must wait a moment before using this command!"
+reload: "{prefix} &7Plugin and .yml files reloaded!"
+ban-date-error: "\n&cBAN DATE ERROR - CONTACT AN ADMINISTRATOR ON DISCORD" # Should never really happen.
+help: "{prefix} Command usage: \n 
+ &b/sm reload &7- Reloads plugin and .yml files \n
+ &b/ban <player> <reason> \n
+ &b/ipban <player> <reason> \n
+ &b/tempban <player> <time> <d/h/m/s> <reason> \n
+ &b/unban <player> \n
+ &b/mute <player> <time> <d/h/m/s> <reason> \n
+ &b/unmute <player> \n
+ &b/kick <player> <reason> \n
+ &b/warn <player> <reason> \n
+ &b/wl <on/off/add/remove/clear> <player> \n
+ &b/punish <player>"
+
+# Whitelist command messages
+whitelist-usage: "{prefix} &7Correct usage: &c/wl <on/off/add/remove/clear> <player>"
+whitelist-disallow: "{prefix}\n &eWhitelist is enabled!"
+
+player-whitelist-add-message: "{prefix} &7You have been added to the whitelist by &c{admin}&7!"
+console-whitelist-add-message: "{admin} added player {player} to the whitelist!"
+admin-whitelist-add-message: "{prefix} &7You added &c{player} &7to the whitelist!"
+whitelist-add-usage: "{prefix} &7Correct usage: &c/wl add <player>"
+player-already-whitelisted: "{prefix} &7This player is already whitelisted!"
+
+player-whitelist-remove-kick-message: "{prefix}\n &eYou have been removed from the whitelist!"
+player-whitelist-remove-message: "{prefix} &7You have been removed from the whitelist!"
+console-whitelist-remove-message: "{admin} removed player {player} from the whitelist!"
+admin-whitelist-remove-message: "{prefix} &7You removed &c{player} &7from the whitelist!"
+whitelist-remove-usage: "{prefix} &7Correct usage: &c/wl remove <player>"
+player-not-whitelisted: "{prefix} &7This player is not on the whitelist!"
+
+cannot-clear-whitelist: "{prefix} &7You must disable the whitelist before clearing it!"
+whitelist-cleared: "{prefix} &7Whitelist cleared!"
+
+whitelist-enabled: "{prefix} &7Whitelist enabled!"
+whitelist-enabled-kick: "{prefix}\n &eWhitelist has been enabled!"
+whitelist-already-enabled: "{prefix} &7Whitelist is already enabled!"
+
+whitelist-disabled: "{prefix} &7Whitelist disabled!"
+whitelist-already-disabled: "{prefix} &7Whitelist is already disabled!"
+
+# Ban command messages
+ban-usage: "{prefix} &7Correct usage: &c/ban <player> <reason>"
+
+player-ban-join-message: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}"
+player-ban-message: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}"
+console-ban-message: "{admin} banned player {player}!"
+admin-ban-message: "{prefix} &7You banned &c{player}&7!"
+
+player-ban-join-message-reason: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}\n &eReason: &7{reason}"
+player-ban-message-reason: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}\n &eReason: &7{reason}"
+console-ban-message-reason: "{admin} banned player {player} for {reason}!"
+admin-ban-message-reason: "{prefix} &7You banned &c{player} &7for &c{reason}&7!"
+
+# IpBan command messages
+ipban-usage: "{prefix} &7Correct usage: &c/ipban <player> <reason>"
+not-found-ip: "{prefix} &7IP not found for this player! Make sure the nickname is correct or use /ban!"
+
+player-ipban-join-message: "{prefix}\n &eYou have been IP banned!\n &eAdmin: &7{admin}"
+player-ipban-message: "{prefix}\n &eYou have been IP banned!\n &eAdmin: &7{admin}"
+console-ipban-message: "{admin} IP banned player {player}!"
+admin-ipban-message: "{prefix} &7You IP banned &c{player}&7!"
+
+player-ipban-join-message-reason: "{prefix}\n &eYou have been IP banned!\n &eAdmin: &7{admin}\n &eReason: &7{reason}"
+player-ipban-message-reason: "{prefix}\n &eYou have been IP banned!\n &eAdmin: &7{admin}\n &eReason: &7{reason}"
+console-ipban-message-reason: "{admin} IP banned player {player} for {reason}!"
+admin-ipban-message-reason: "{prefix} &7You IP banned &c{player} &7for &c{reason}&7!"
+
+# TempBan command messages
+tempban-usage: "{prefix} &7Correct usage: &c/tempban <player> <time> <d/h/m/s> <reason>"
+bad-tempban-time: "{prefix} &7Ban duration must be a number (e.g. 30)!"
+negative-tempban-time: "{prefix} &7The number must be greater than 0!"
+bad-tempban-unit: "{prefix} &7Time unit must be <d/h/m/s>!"
+
+player-tempban-join-message: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}\n &eUntil: &7{time}"
+player-tempban-message: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}\n &eUntil: &7{time}"
+console-tempban-message: "{admin} banned player {player} until {time}!"
+admin-tempban-message: "{prefix} &7You banned &c{player}&7 until &c{time}&7!"
+
+player-tempban-join-message-reason: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}\n &eUntil: &7{time}\n &eReason: &7{reason}"
+player-tempban-message-reason: "{prefix}\n &eYou have been banned!\n &eAdmin: &7{admin}\n &eUntil: &7{time}\n &eReason: &7{reason}"
+console-tempban-message-reason: "{admin} banned player {player} for {reason} until {time}!"
+admin-tempban-message-reason: "{prefix} &7You banned &c{player} &7for &c{reason} &7until &c{time}&7!"
+
+# UnBan command messages
+unban-usage: "{prefix} &7Correct usage: &c/unban <player>"
+not-found-unban: "{prefix} &7Player not found on the ban list!"
+console-unban-message: "{admin} unbanned {player}!"
+admin-unban-message: "{prefix} &7You unbanned &c{player}&7!"
+
+# Kick command messages
+kick-usage: "{prefix} &7Correct usage: &c/kick <player> <reason>"
+not-found-kick: "{prefix} &7Player not found!"
+
+player-kick-message: "{prefix}\n &eYou have been kicked!\n &eAdmin: &7{admin}"
+console-kick-message: "{admin} kicked player {player}!"
+admin-kick-message: "{prefix} &7You kicked &c{player}&7!"
+
+player-kick-message-reason: "{prefix}\n &eYou have been kicked!\n &eAdmin: &7{admin}\n &eReason: &7{reason}"
+console-kick-message-reason: "{admin} kicked player {player} for {reason}!"
+admin-kick-message-reason: "{prefix} &7You kicked &c{player} &7for &c{reason}&7!"
+
+# Mute command messages
+mute-usage: "{prefix} &7Correct usage: &c/mute <player> <time> <d/h/m/s> <reason>"
+not-found-mute: "{prefix} &7Player not found!"
+bad-mute-time: "{prefix} &7Mute duration must be a number (e.g. 30)!"
+negative-mute-time: "{prefix} &7The number must be greater than 0!"
+bad-mute-unit: "{prefix} &7Time unit must be <d/h/m/s>!"
+you-are-muted: "{prefix} &7You are muted until &c{time}&7!" # You can use {reason} here
+
+mute-title: "&c&lYou have been muted!" # You can use {reason} and {time} here
+mute-subtitle: "&cCheck the chat!" # You can use {reason} and {time} here
+
+player-mute-message: "\n \n \n \n \n \n \n \n \n \n
+                      &7----------------------\n 
+                      &c&l!!! &cYou have been muted by &7{admin}&c&l !!!\n \n 
+                      &cMuted until: &7{time}&c!\n 
+                      &7----------------------\n "
+console-mute-message: "{admin} muted player {player} until {time}!"
+admin-mute-message: "{prefix} &7You muted &c{player} &7until &c{time}&7!"
+
+player-mute-message-reason: "\n \n \n \n \n \n \n \n \n \n
+                      &7----------------------\n 
+                      &c&l!!! &cYou have been muted by &7{admin}&c&l !!!\n \n 
+                      &cMuted until: &7{time}&c! \n \n
+                      &cReason: &7{reason}&c!\n 
+                      &7----------------------\n "
+console-mute-message-reason: "{admin} muted player {player} for {reason} until {time}!"
+admin-mute-message-reason: "{prefix} &7You muted &c{player} &7for &c{reason} &7until &c{time}&7!"
+
+# UnMute command messages
+unmute-usage: "{prefix} &7Correct usage: &c/unmute <player>"
+not-found-unmute: "{prefix} &7Player not found on the mute list!"
+player-unmute-message: "{prefix} &7You have been unmuted by &c{admin}&7!"
+console-unmute-message: "{admin} unmuted {player}!"
+admin-unmute-message: "{prefix} &7You unmuted &c{player}&7!"
+
+# Warn command messages
+warn-usage: "{prefix} &7Correct usage: &c/warn <player> <reason>"
+not-found-warn: "{prefix} &7Player not found!"
+
+warn-title: "&c&lYou received a warning!" # You can use {reason} and {time} here
+warn-subtitle: "&cCheck the chat!" # You can use {reason} and {time} here
+
+player-warn-message: "\n \n \n \n \n \n \n \n \n \n
+                      &7----------------------\n 
+                      &c&l!!! &cYou received a warning from &7{admin}&c&l !!!\n \n 
+                      &cAnother warning may result in server punishment!\n 
+                      &7----------------------\n "
+console-warn-message: "{admin} warned player {player}!"
+admin-warn-message: "{prefix} &7You warned &c{player}&7!"
+
+player-warn-message-reason: "\n \n \n \n \n \n \n \n \n \n
+                      &7----------------------\n 
+                      &c&l!!! &cYou received a warning from &7{admin}&c&l !!!\n \n 
+                      &cReason: &7{reason}&c!\n \n
+                      &cAnother warning may result in server punishment!\n 
+                      &7----------------------\n "
+console-warn-message-reason: "{admin} warned player {player} for {reason}!"
+admin-warn-message-reason: "{prefix} &7You warned &c{player} &7for &c{reason}&7!"
