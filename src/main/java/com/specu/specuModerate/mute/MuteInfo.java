@@ -1,4 +1,4 @@
-package com.specu.specuModerate.Mute;
+package com.specu.specuModerate.mute;
 
 import java.time.LocalDateTime;
 

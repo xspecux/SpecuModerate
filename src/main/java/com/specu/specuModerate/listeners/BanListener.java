@@ -1,7 +1,7 @@
-package com.specu.specuModerate.Listeners;
+package com.specu.specuModerate.listeners;
 
-import com.specu.specuModerate.Ban.BanInfo;
-import com.specu.specuModerate.Ban.BanManager;
+import com.specu.specuModerate.ban.BanInfo;
+import com.specu.specuModerate.ban.BanManager;
 import com.specu.specuModerate.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

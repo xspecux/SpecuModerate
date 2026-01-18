@@ -1,7 +1,7 @@
-package com.specu.specuModerate.Listeners;
+package com.specu.specuModerate.listeners;
 
 import com.specu.specuModerate.Main;
-import com.specu.specuModerate.Whitelist.WhitelistManager;
+import com.specu.specuModerate.whitelist.WhitelistManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;

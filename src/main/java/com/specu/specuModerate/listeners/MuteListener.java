@@ -1,8 +1,8 @@
-package com.specu.specuModerate.Listeners;
+package com.specu.specuModerate.listeners;
 
 import com.specu.specuModerate.Main;
-import com.specu.specuModerate.Mute.MuteInfo;
-import com.specu.specuModerate.Mute.MuteManager;
+import com.specu.specuModerate.mute.MuteInfo;
+import com.specu.specuModerate.mute.MuteManager;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

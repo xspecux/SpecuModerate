@@ -1,4 +1,4 @@
-package com.specu.specuModerate.Punish;
+package com.specu.specuModerate.punish;
 
 import com.specu.specuModerate.Main;
 

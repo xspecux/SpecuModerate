@@ -1,8 +1,8 @@
-package com.specu.specuModerate.ModCommands;
+package com.specu.specuModerate.commands;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.specu.specuModerate.Ban.BanManager;
+import com.specu.specuModerate.ban.BanManager;
 import com.specu.specuModerate.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

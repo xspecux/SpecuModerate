@@ -1,4 +1,4 @@
-package com.specu.specuModerate.Whitelist;
+package com.specu.specuModerate.ban;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -11,60 +11,48 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class WhitelistManager {
+public class BanManager {
     private final Main main;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final ExecutorService saveExecutor = Executors.newSingleThreadExecutor();
 
-    public  WhitelistManager(Main main) {
+    public BanManager(Main main) {
         this.main = main;
     }
 
-    private Map<UUID, String> whitelisted = new HashMap<>();
+    private Map<UUID, BanInfo> players = new HashMap<>();
 
-    public void addWhitelist(OfflinePlayer player) {
+    public void banPlayer(OfflinePlayer player, String reason, String admin, boolean ipBanned, String ip, String date, String bandate) {
         if (player.hasPlayedBefore()) {
-            whitelisted.put(player.getUniqueId(), player.getName());
-            saveWhitelistData();
+            players.put(player.getUniqueId(), new BanInfo(player.getName(), reason, admin, ipBanned, ip, date, bandate));
+            saveBansData();
         }
     }
 
-    public void removeWhitelist(OfflinePlayer player) {
+    public void unBanPlayer(OfflinePlayer player) {
         if (player.hasPlayedBefore()) {
-            whitelisted.remove(player.getUniqueId());
-            saveWhitelistData();
+            players.remove(player.getUniqueId());
+            saveBansData();
         }
     }
 
-    public void clearWhitelist() {
-        whitelisted.clear();
-        saveWhitelistData();
+    public BanInfo getBanInfo(OfflinePlayer player) {
+        return players.get(player.getUniqueId());
     }
 
-    public boolean isWhitelisted(OfflinePlayer player) {
-        if (player.hasPlayedBefore()) {
-            return whitelisted.containsKey(player.getUniqueId());
-        }
-        return false;
+    public boolean isPlayerBanned(OfflinePlayer player) {
+        return players.containsKey(player.getUniqueId());
     }
 
-    public boolean isWhitelistEnabled() {
-        return main.isWhitelistEnabled();
-    }
-
-    public void setWhitelistEnabled(boolean enabled) {
-        main.setWhitelistEnabled(enabled);
-        main.getConfig().set("whitelistenabled", enabled);
-        main.saveConfig();
-    }
-
-    public void loadWhitelistData() {
-        File file = getWhitelistFile();
+    public void loadBansData() {
+        File file = getBansFile();
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
@@ -73,27 +61,27 @@ public class WhitelistManager {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException("I can't create whitelist.json", e);
+                throw new RuntimeException("I can't create bans.json", e);
             }
         }
 
         try (FileReader reader = new FileReader(file)) {
-            Type type = new TypeToken<HashMap<UUID, String>>() {}.getType();
-            Map<UUID, String> loaded = gson.fromJson(reader, type);
+            Type type = new TypeToken<HashMap<UUID, BanInfo>>() {}.getType();
+            Map<UUID, BanInfo> loaded = gson.fromJson(reader, type);
 
-            whitelisted = (loaded != null) ? loaded : new HashMap<>();
+            players = (loaded != null) ? loaded : new HashMap<>();
 
         } catch (IOException e) {
             e.printStackTrace();
-            whitelisted = new HashMap<>();
+            players = new HashMap<>();
         }
     }
 
-    private void saveWhitelistData() {
-        Map<UUID, String> snapshot = new HashMap<>(whitelisted);
+    private void saveBansData() {
+        Map<UUID, BanInfo> snapshot = new HashMap<>(players);
 
         saveExecutor.execute(() -> {
-            File file = getWhitelistFile();
+            File file = getBansFile();
 
             try (FileWriter writer = new FileWriter(file)) {
                 gson.toJson(snapshot, writer);
@@ -103,8 +91,8 @@ public class WhitelistManager {
         });
     }
 
-    private File getWhitelistFile() {
-        return new File(main.getDataFolder(), "moderation/whitelist.json");
+    private File getBansFile() {
+        return new File(main.getDataFolder(), "moderation/bans.json");
     }
 
     public void shutdown() {

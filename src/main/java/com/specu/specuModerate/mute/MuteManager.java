@@ -1,11 +1,10 @@
-package com.specu.specuModerate.Mute;
+package com.specu.specuModerate.mute;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.specu.specuModerate.Main;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.FileReader;

@@ -1,9 +1,9 @@
-package com.specu.specuModerate.ModCommands;
+package com.specu.specuModerate.commands;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.specu.specuModerate.Main;
-import com.specu.specuModerate.Whitelist.WhitelistManager;
+import com.specu.specuModerate.whitelist.WhitelistManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;

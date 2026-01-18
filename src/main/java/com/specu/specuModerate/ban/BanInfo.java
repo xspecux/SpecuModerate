@@ -1,4 +1,4 @@
-package com.specu.specuModerate.Ban;
+package com.specu.specuModerate.ban;
 
 public class BanInfo {
     private final String name;

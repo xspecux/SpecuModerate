@@ -1,4 +1,4 @@
-package com.specu.specuModerate.Ban;
+package com.specu.specuModerate.ban;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;

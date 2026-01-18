@@ -1,9 +1,9 @@
-package com.specu.specuModerate.ModCommands;
+package com.specu.specuModerate.commands;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.specu.specuModerate.Main;
-import com.specu.specuModerate.Mute.MuteManager;
+import com.specu.specuModerate.mute.MuteManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;

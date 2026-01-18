@@ -1,9 +1,8 @@
-package com.specu.specuModerate.ModCommands;
+package com.specu.specuModerate.commands;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.specu.specuModerate.Ban.BanManager;
-import com.specu.specuModerate.Ban.IpData;
+import com.specu.specuModerate.ban.BanManager;
 import com.specu.specuModerate.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -18,50 +17,39 @@ import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public class IpBanCommand implements CommandExecutor {
+
+public class BanCommand implements CommandExecutor {
     private final Main main;
     private final BanManager banManager;
-    private final IpData ipData;
-    public IpBanCommand(Main main, BanManager banManager, IpData ipData) {
+
+    public BanCommand(Main main, BanManager banManager) {
         this.main = main;
         this.banManager = banManager;
-        this.ipData = ipData;
     }
 
     private static final Cache<UUID, Long> cooldown = CacheBuilder.newBuilder().expireAfterWrite(300, TimeUnit.MILLISECONDS).build();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if (!main.hasPermission(sender, "ipban")) return false;
+        if (!main.hasPermission(sender, "ban")) return false;
 
         if (!main.hasCooldown(sender, cooldown)) return false;
 
         if (args.length == 0) {
-            sender.sendMessage(main.getMessage("ipban-usage", sender.getName(), null, null));
+            sender.sendMessage(main.getMessage("ban-usage", sender.getName(), null, null));
             return false;
         }
 
         OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
-        if (!player.hasPlayedBefore()) {
-            sender.sendMessage(main.getMessage("not-found-ip", sender.getName(), player.getName(), null));
-            return false;
-        }
-
-        String ip = ipData.getIps().get(player.getUniqueId());
-
-        if (ip == null || ip.equals("unknown")) {
-            sender.sendMessage(main.getMessage("not-found-ip", sender.getName(), player.getName(), null));
-            return false;
-        }
 
         String reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
         if (reason.isEmpty()) reason = null;
 
-        banManager.banPlayer(player, reason, sender.getName(), true, ip, LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm:ss")), "perm");
+        banManager.banPlayer(player, reason, sender.getName(), false, null, LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm:ss")), "perm");
 
-        Player online = Bukkit.getPlayer(args[0]);
+        Player online = player.getPlayer();
 
-        main.handleReasonMessage(online, sender, player.getName(), "ipban", reason, null);
+        main.handleReasonMessage(online, sender, player.getName(), "ban", reason, null);
         return true;
     }
 }
